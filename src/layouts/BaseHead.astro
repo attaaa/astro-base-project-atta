@@ -1,0 +1,36 @@
+---
+import { seo } from '../data/seo-base'
+
+interface Props {
+  title: string
+  description?: string
+  img?: string
+  robots?: string
+}
+const { title, description, img, robots } = Astro.props
+
+const seoTitle = Astro.url.pathname === '/' ? seo.title : `${title} | ${seo.title}`
+const seoDescription = description || seo.description
+const seoImg = img || seo.img
+---
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='description' content={seoDescription} />
+  <meta name='viewport' content='width=device-width' />
+  <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+
+  <meta name='robots' content=`${robots || 'index, follow'}` />
+
+  <meta property='og:title' content={seoTitle} />
+  <meta property='og:description' content={seoDescription} />
+  <meta property='og:image' content={seoImg} />
+  <meta property='og:url' content={Astro.url} />
+
+  <meta name='twitter:card' content='summary' />
+  <meta name='twitter:title' content={seoTitle} />
+  <meta name='twitter:description' content={seoDescription} />
+  <meta name='twitter:image' content={seoImg} />
+
+  <title>{seoTitle}</title>
+</head>
