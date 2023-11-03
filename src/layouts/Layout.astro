@@ -1,5 +1,6 @@
 ---
 import BaseHead from './BaseHead.astro'
+import '../assets/styles/global.scss'
 
 interface Props {
   title: string
@@ -15,8 +16,27 @@ const { title, description, img, robots } = Astro.props
 <html lang='en'>
   <BaseHead title={title} description={description} img={img} robots={robots} />
   <body>
-    <header></header>
-    <main><slot /></main>
+    <header class='container mx-auto'>
+      <nav>
+        <a href='/' aria-label='devatta'>
+          <svg width='32' viewBox='0 0 32 32'>
+            <path
+              d='M13.4671 2.84019C11.0445 4.23891 10.2144 7.33673 11.6131 9.75938L21.7435 27.3057C23.1422 29.7284 26.2401 30.5584 28.6627 29.1597C31.0854 27.761 31.9154 24.6632 30.5167 22.2405L20.3863 4.69418C18.9876 2.27153 15.8898 1.44147 13.4671 2.84019Z'
+              fill='#FFCB0A'
+              fill-opacity='0.8'></path>
+            <path
+              d='M3.33716 29.1598C0.914509 27.7611 0.0844488 24.6633 1.48316 22.2406L11.6136 4.69426C13.0123 2.27161 16.1101 1.44155 18.5327 2.84026C20.9554 4.23898 21.7855 7.33681 20.3867 9.75945L10.2563 27.3058C8.85763 29.7285 5.7598 30.5585 3.33716 29.1598Z'
+              fill='#009743'
+              fill-opacity='0.8'></path>
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
     <footer></footer>
   </body>
 </html>
